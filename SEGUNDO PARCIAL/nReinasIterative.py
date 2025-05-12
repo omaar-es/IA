@@ -1,36 +1,48 @@
 import numpy as np
-def n_reinas(n):
-    tablero=[-1]*n ##arreglo unidimensional
-    fila=0;
-    while fila < n:
-        for col in range(n):
-            i=0
-            ##checa 
-            while i < fila:
-                ##recorre las posibles soluciones 0...fila_actual
-                if tablero[i] == col or tablero[i] - i == col - fila or tablero[i] + i == col + fila:
-                validez=False
-                break
-                i+=1
+
+def n_reinas_iterativo(n):
+    tablero = [-1] * n
+    fila = 0
+
+    while fila >= 0:
+        tablero[fila] += 1  # Probar siguiente columna en la fila actual
+
+        while tablero[fila] < n:
+            # Verificar si es una posición válida
+            validez = True
+            for i in range(fila):
+                if (tablero[i] == tablero[fila] or
+                    tablero[i] - i == tablero[fila] - fila or
+                    tablero[i] + i == tablero[fila] + fila):
+                    validez = False
+                    break
+
             if validez:
-                tablero[fila] = col
-                ##imprimir_tablero(tablero, n)
-                if resolvedor(tablero, fila+1):
-                return True
-                print(f"Backtracking: Retirando la reina de la fila {fila}, columna {col}")
+                break  # Posición válida, salimos del while para continuar con la siguiente fila
+            else:
+                tablero[fila] += 1  # Probar siguiente columna
+
+        if tablero[fila] < n:
+            if fila == n - 1:
+                imprimir_tablero(tablero, n)  # Solución encontrada
+                # Podemos seguir buscando más soluciones, si se desea
                 tablero[fila] = -1
-        fila+=1
-    if fila == n: #Ya se recorrieron todas las posibles filas del tablero (caso base)
-        imprimir_tablero(tablero,n)
-    else: 
-        print("No hay solucion")
+                fila -= 1
+            else:
+                fila += 1
+                tablero[fila] = -1  # Preparar la siguiente fila
+        else:
+            # Retroceso (backtracking)
+            tablero[fila] = -1
+            fila -= 1
 
 def imprimir_tablero(tablero, n):
-    tablerito = np.zeros((n,n))
+    tablerito = np.zeros((n, n))
     for i in range(n):
-      for j in range(n):
-        if tablero[i] == j:
-          tablerito[i, j] = 1
+        if tablero[i] != -1:
+            tablerito[i, tablero[i]] = 1
     print(tablerito)
+    print()  # Línea en blanco entre soluciones
 
-n_reinas(4)
+# Ejecutar el algoritmo iterativo
+n_reinas_iterativo(4)
