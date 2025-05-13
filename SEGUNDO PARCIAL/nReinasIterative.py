@@ -6,7 +6,7 @@ def n_reinas_iterativo(n):
 
     while fila >= 0:
         tablero[fila] += 1  # Probar siguiente columna en la fila actual
-
+        #prueba poner una reina en la fila 
         while tablero[fila] < n:
             # Verificar si es una posición válida
             validez = True
@@ -25,16 +25,17 @@ def n_reinas_iterativo(n):
         if tablero[fila] < n:
             if fila == n - 1:
                 imprimir_tablero(tablero, n)  # Solución encontrada
-                # Podemos seguir buscando más soluciones, si se desea
-                tablero[fila] = -1
-                fila -= 1
+                fila=-1
             else:
                 fila += 1
                 tablero[fila] = -1  # Preparar la siguiente fila
         else:
             # Retroceso (backtracking)
-            tablero[fila] = -1
-            fila -= 1
+            print("haciendo retroceso, moviendo la fila hacia atras", fila)
+            imprimir_tablero(tablero, n)
+            tablero[fila] = -1 #reinicia la fila
+            fila -= 1 #retrocede una columna
+            
 
 def imprimir_tablero(tablero, n):
     tablerito = np.zeros((n, n))
