@@ -22,8 +22,9 @@ def encontrar_vacia(tablero):
 
 def es_valido(tablero, fila, col, num):
     # Verificar fila
-    if num in tablero[fila]:
-        return False
+    for j in range(9):
+        if tablero[fila][j] == num:
+            return False
 
     # Verificar columna
     for i in range(9):
@@ -31,8 +32,8 @@ def es_valido(tablero, fila, col, num):
             return False
 
     # Verificar subcuadro 3x3
-    inicio_fila = (fila // 3) * 3
-    inicio_col = (col // 3) * 3
+    inicio_fila = fila - (fila % 3)
+    inicio_col = col - (col % 3)
     for i in range(3):
         for j in range(3):
             if tablero[inicio_fila + i][inicio_col + j] == num:

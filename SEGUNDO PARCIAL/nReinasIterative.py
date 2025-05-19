@@ -5,7 +5,7 @@ def n_reinas_iterativo(n):
     fila = 0
 
     while fila >= 0:
-        tablero[fila] += 1  # Probar siguiente columna en la fila actual
+        tablero[fila] += 1 
         #prueba poner una reina en la fila 
         while tablero[fila] < n:
             # Verificar si es una posición válida
