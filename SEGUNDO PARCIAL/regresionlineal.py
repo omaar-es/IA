@@ -7,7 +7,7 @@ X1 = np.array ([1,2,3,4,5,6,7,8,9])
 Yd = np.array ([2,5,8,10,14,5,19,20,24.5])
 
 ##Definir hiperparametros/parametros
-b0 = 0.1
+b0 = 0.3
 b1 = 0.2
 
 ## Se aconseja un learning rate entre (0,1), lr = learning rate
@@ -48,6 +48,10 @@ plt.plot(X1, b1 *X1 + b0, color='red', label='Línea ajustada')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
+plt.show()
+
+## Graficar el ECM
+plt.plot(ECM_record)
 plt.show()
 
 print("Escribe la x: ")

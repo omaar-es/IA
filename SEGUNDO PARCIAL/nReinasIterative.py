@@ -32,9 +32,10 @@ def n_reinas_iterativo(n):
         else:
             # Retroceso (backtracking)
             print("haciendo retroceso, moviendo la fila hacia atras", fila)
-            imprimir_tablero(tablero, n)
+            #imprimir_tablero(tablero, n)
             tablero[fila] = -1 #reinicia la fila
             fila -= 1 #retrocede una columna
+    
             
 
 def imprimir_tablero(tablero, n):
@@ -46,4 +47,8 @@ def imprimir_tablero(tablero, n):
     print()  # Línea en blanco entre soluciones
 
 # Ejecutar el algoritmo iterativo
-n_reinas_iterativo(4)
+print("Ingresa el numero de reinas: ")
+num=int(input())
+
+n_reinas_iterativo(num)
+
