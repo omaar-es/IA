@@ -94,13 +94,12 @@ for i in range(filas):
 # Inicializar pesos aleatorios
 W = np.random.rand(n)
 w0 = np.random.rand()
-x0 = 1
 yobt = np.zeros_like(Yd)
 
 # Entrenamiento
 for i in range(epochs):
   for j in range(filas):
-    z = w0 * x0 + np.sum(W * X[j])
+    z = w0 + np.sum(W * X[j])
     y = funcion_activacion(z)
     if opcion in [3, 4]:  # sigmoide y tanh necesitan redondeo para comparar
       y = round(y)
@@ -110,6 +109,7 @@ for i in range(epochs):
       w0 = w0 - lr * error
       for k in range(n):
         W[k] = W[k] - lr * error * X[j][k]
+  print(f"Época {i + 1}: Pesos: {W}, Sesgo: {w0}")
 
 # Mostrar tabla
 print("\nTabla de verdad aprendida:")

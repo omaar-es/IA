@@ -25,7 +25,7 @@ yobt = np.zeros_like(Yd)
 # Inicialización de pesos
 W = np.random.rand(2)
 w0 = np.random.rand()
-x0 = 1
+
 
 # Parámetros
 lr = 0.2
@@ -34,7 +34,7 @@ epochs = 100
 # Entrenamiento
 for epoca in range(epochs):
   for i in range(len(Yd)):
-    z = w0 * x0 + W[0]*X[i][0] + W[1]*X[i][1]
+    z = w0  + W[0]*X[i][0] + W[1]*X[i][1]
     y = activacion(z)
     yobt[i] = y
     if y != Yd[i]:
@@ -47,14 +47,16 @@ for epoca in range(epochs):
 # Resultados finales
 print("\nResultados finales:")
 print("Entradas     Yd      Yobt")
+
 for i in range(len(Yd)):
   entrada = " ".join(str(x) for x in X[i])
   print(entrada, "  |  ", Yd[i], "  |  ", yobt[i])
 
-# Fase de operación
+# Fase de operación0.8
+
 print("\n--- Fase de operación ---")
 x1 = float(input("Ingresa el valor de x1: "))
 x2 = float(input("Ingresa el valor de x2: "))
-z = w0 * x0 + W[0]*x1 + W[1]*x2
+z = w0  + W[0]*x1 + W[1]*x2
 y_op = activacion(z)
 print("El valor de Y es:", y_op)

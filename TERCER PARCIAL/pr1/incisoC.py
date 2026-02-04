@@ -25,7 +25,7 @@ yobt = np.zeros_like(Yd)
 # Parámetros
 lr = 0.2
 epochs = 100
-x0 = 1
+
 
 # Inicialización de pesos aleatorios entre 0 y 1
 W = np.random.rand(4)
@@ -34,7 +34,7 @@ w0 = np.random.rand()
 # Entrenamiento
 for i in range(epochs):
   for j in range(len(Yd)):
-    z = w0 * x0 + np.sum(W * X[j])
+    z = w0  + np.sum(W * X[j])
     y = escalon(z)
     yobt[j] = y
     if y != Yd[j]:
@@ -59,6 +59,6 @@ x3 = int(input("Ingrese x3: "))
 x4 = int(input("Ingrese x4: "))
 
 X_op = np.array([x1, x2, x3, x4])
-z_op = w0*x0 + np.sum(W * X_op)
+z_op = w0 + np.sum(W * X_op)
 y_op = escalon(z_op)
 print("El valor de Y es:", y_op)
